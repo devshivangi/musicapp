@@ -19,5 +19,19 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
+  <ion-item>
+    <ion-label stacked=Channel ID></ion-label>
+  <ion-input type="text" [(ngModel)]="ChannelId"></ion-input>  
+  </ion-item>
+  <button full ion-button (click)="searchPlaylist()" [disabled]="ChannelId == ''" color ="danger">searchPlaylist</button>
+<ion-list no-padding>
+  <button ion-item *ngFor="let list of playlist | async" (click)="OpenPlaylist(list.id)">
+  <ion-thumbnail item-start>
+  <img [src]="list.snippet.thumbnails.standard.url">
+</ion-thumbnail>
+<h2>{{list.snippet.title}}</h2>
+<p>{{ list.snippet.publishedAt | date :'short' }}</p>
+</button>
+</ion-list>
 </ion-content>
 
